@@ -8,3 +8,4 @@
  
  [komentorivi.txt](https://github.com/BorisVer/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
+[Tuntikirjanpito](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
