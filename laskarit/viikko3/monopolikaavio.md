@@ -23,6 +23,12 @@
     Kortit -- Sattuma
     Kortit -- Yhteismaa
     Toiminto -- Kortit
+    Toiminto -- Aloitusruutu
+    Toiminto -- Vankila
+    Toiminto -- Asema
+    Toiminto -- Laitos
+    Toiminto -- Katu
+
 
     Talo "0..4" -- Katu
     Hotelli "0..1" -- Katu
