@@ -16,16 +16,14 @@ class GameLogic:
     def spawn_tile(self):
         # Adds a 2 or 4 to a empty cell
         empty_cells = []
-        for row in range(1, self.tile_count):
-            for col in range(1, self.tile_count):
-                print(self.grid, row, col)
+        for row in range(0, self.tile_count):
+            for col in range(0, self.tile_count):
                 if self.grid[row][col] == 0:
                     empty_cells.append((row, col))
 
         if empty_cells:
             row, col = random.choice(empty_cells)
             # 2 has a 90% chance of being spawned, 4 has a 10% chance
-            print(row, col)
             if random.random() < 0.1:
                 self.grid[row][col] = 4
             else:
@@ -37,9 +35,8 @@ class GameLogic:
     def move(self, input):
         method_name = "_move_" + input
         method = getattr(self, method_name)
-        method()
-        # Make it so the game pauses and is clear where the new one spawns
-        pygame.time.set_timer(pygame.USEREVENT + 1, GameConfig.SPAWN_DELAY, loops=1)
+        if method():
+            self.spawn_tile()
 
     def _move_left(self):
         new_grid = []
@@ -60,7 +57,11 @@ class GameLogic:
 
             new_grid.append(row)
 
-        self.grid = new_grid
+        if new_grid == self.grid:
+            return False
+        else:
+            self.grid = new_grid
+            return True
 
     def _move_right(self):
         new_grid = []
@@ -81,7 +82,11 @@ class GameLogic:
 
             new_grid.append(row)
 
-        self.grid = new_grid
+        if new_grid == self.grid:
+            return False
+        else:
+            self.grid = new_grid
+            return True
 
     def _move_up(self):
         new_grid = [[0] * GameConfig.TILE_COUNT for _ in range(GameConfig.TILE_COUNT)]
@@ -104,7 +109,11 @@ class GameLogic:
             for row in range(GameConfig.TILE_COUNT):
                 new_grid[row][col] = new_col[row]
 
-        self.grid = new_grid
+        if new_grid == self.grid:
+            return False
+        else:
+            self.grid = new_grid
+            return True
 
 
     def _move_down(self):
@@ -128,7 +137,11 @@ class GameLogic:
             for row in range(GameConfig.TILE_COUNT):
                 new_grid[row][col] = new_col[row]
 
-        self.grid = new_grid
+        if new_grid == self.grid:
+            return False
+        else:
+            self.grid = new_grid
+            return True
 
     def game_over(self):
         # Game over logic
