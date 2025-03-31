@@ -11,6 +11,8 @@ class BoardUI:
         self.spacing = config.SPACING
 
     def draw(self):
+        font = pygame.font.Font(None, 48)
+
         for i in range(GameConfig.TILE_COUNT):
             for j in range(GameConfig.TILE_COUNT):
                 value = self.board.grid[i][j]
@@ -23,3 +25,8 @@ class BoardUI:
                     self.tile_size
                 )
                 pygame.draw.rect(self.screen, color, rect)
+
+                if value != 0:
+                    text_surface = font.render(str(value), True, (0, 0, 0))  # Render text in black
+                    text_rect = text_surface.get_rect(center=rect.center)  # Center text in the tile
+                    self.screen.blit(text_surface, text_rect)  # Draw the text
