@@ -1,17 +1,39 @@
- # Ohjelmistotekniikka
+ # 2048
 
- ## Harjoitustyö
+2048 Peli
 
- [Vaatimusmäärittely](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+## Dokumentaatio
+
+- [Vaatimusmäärittely](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+- [Tuntikirjanpito](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+- [Change Log](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
  
- [Tuntikirjanpito](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+## Asennus
+1. Asenna riippuvuudet
 
- [Change Log](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
- 
- ## Tehtävät
+   ```bash
+   poetry install
+   ```
+   
+2. Avaa peli
 
- ### Viikko 1
+   ```bash
+   poetry run invoke start
+   ```
 
- [gitlog.txt](https://github.com/BorisVer/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
- 
- [komentorivi.txt](https://github.com/BorisVer/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+### Ohjelman suoritukset
+
+Pelin voi käynnistää
+   ```bash
+   poetry run invoke start
+   ```
+
+Testit voi suorittaa
+   ```bash
+   poetry run invoke test
+   ```
+
+Coverage raportin voi saada
+   ```bash
+   poetry run invoke coverage-report
+   ```
