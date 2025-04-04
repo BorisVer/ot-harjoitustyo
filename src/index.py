@@ -1,7 +1,10 @@
+# pylint: disable=no-member
+# Pylint does not recognize pygame for some reason
 import pygame
 from game.game_logic import GameLogic
 from ui.board_ui import BoardUI
 from game_config import GameConfig
+
 
 def main():
     pygame.init()
@@ -32,6 +35,7 @@ def main():
         ui.draw()
         pygame.display.flip()
         clock.tick(60)
+
 
 if __name__ == "__main__":
     main()

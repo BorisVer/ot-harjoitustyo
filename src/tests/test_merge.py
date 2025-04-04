@@ -1,8 +1,11 @@
-import unittest
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from game.game_logic import GameLogic
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from game import GameLogic
+import unittest
+
+
 
 class TestMergeLogic(unittest.TestCase):
     def setUp(self):

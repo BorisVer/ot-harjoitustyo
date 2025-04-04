@@ -8,13 +8,16 @@ authors = [{ name = "BorisVer", email = "borisversonnen@gmail.com" }]
 package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.9.0,<3.11"
 pygame = "^2.6.0"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^6.5.0"
 pytest = "^7.2.0"
 invoke = "^2.2.0"
+pylint = "^3.3.6"
+autopep8 = "^2.3.2"
+pygame = "^2.6.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

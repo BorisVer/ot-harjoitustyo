@@ -6,6 +6,7 @@ class GameConfig:
     SPACING = 15
     BG_COLOR = (187, 173, 160)
     TILE_COLORS = {
+        # Generoitu koodi alkaa (deepseek)
         0: (205, 193, 180),
         2: (255, 223, 186),
         4: (255, 190, 122),
@@ -23,5 +24,6 @@ class GameConfig:
         16384: (255, 69, 0),
         32768: (139, 0, 139),
         65536: (75, 0, 130),
+        # Generoitu koodi loppuu
     }
     SPAWN_DELAY = 250

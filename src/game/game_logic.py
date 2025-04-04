@@ -1,6 +1,6 @@
 import random
-import pygame
 from game_config import GameConfig
+
 
 class GameLogic:
     def __init__(self):
@@ -31,12 +31,12 @@ class GameLogic:
         else:
             self.game_over()
 
-
-    def move(self, input):
-        method_name = "_move_" + input
+    def move(self, input_key):
+        method_name = "_move_" + input_key
         method = getattr(self, method_name)
         if method():
             self.spawn_tile()
+        print(self.score)
 
     def _move_left(self):
         new_grid = []
@@ -47,9 +47,10 @@ class GameLogic:
             i = 0
             while i < len(row) - 1:
                 if row[i] == row[i + 1]:
-                   row[i] = row[i] * 2
-                   row.pop(i + 1)
-                   row.append(0)
+                    row[i] = row[i] * 2
+                    self.score += row[i]
+                    row.pop(i + 1)
+                    row.append(0)
                 i += 1
 
             row = [i for i in row if i != 0]
@@ -59,9 +60,8 @@ class GameLogic:
 
         if new_grid == self.grid:
             return False
-        else:
-            self.grid = new_grid
-            return True
+        self.grid = new_grid
+        return True
 
     def _move_right(self):
         new_grid = []
@@ -72,9 +72,10 @@ class GameLogic:
             i = len(row) - 1
             while i > 0:
                 if row[i] == row[i - 1]:
-                   row[i] = row[i] * 2
-                   row.pop(i - 1)
-                   row.insert(0, 0)
+                    row[i] = row[i] * 2
+                    self.score += row[i]
+                    row.pop(i - 1)
+                    row.insert(0, 0)
                 i -= 1
 
             row = [i for i in row if i != 0]
@@ -84,21 +85,23 @@ class GameLogic:
 
         if new_grid == self.grid:
             return False
-        else:
-            self.grid = new_grid
-            return True
+        self.grid = new_grid
+        return True
 
     def _move_up(self):
-        new_grid = [[0] * GameConfig.TILE_COUNT for _ in range(GameConfig.TILE_COUNT)]
+        new_grid = [
+            [0] * GameConfig.TILE_COUNT for _ in range(GameConfig.TILE_COUNT)]
 
         for col in range(GameConfig.TILE_COUNT):
-            col_vals = [self.grid[row][col] for row in range(GameConfig.TILE_COUNT)]
+            col_vals = [self.grid[row][col]
+                        for row in range(GameConfig.TILE_COUNT)]
             col_vals = [val for val in col_vals if val != 0]
 
             i = 0
             while i < len(col_vals) - 1:
                 if col_vals[i] == col_vals[i + 1]:
                     col_vals[i] *= 2
+                    self.score += col_vals[i]
                     col_vals.pop(i + 1)
                     col_vals.append(0)
                 i += 1
@@ -111,22 +114,23 @@ class GameLogic:
 
         if new_grid == self.grid:
             return False
-        else:
-            self.grid = new_grid
-            return True
-
+        self.grid = new_grid
+        return True
 
     def _move_down(self):
-        new_grid = [[0] * GameConfig.TILE_COUNT for _ in range(GameConfig.TILE_COUNT)]
+        new_grid = [
+            [0] * GameConfig.TILE_COUNT for _ in range(GameConfig.TILE_COUNT)]
 
         for col in range(GameConfig.TILE_COUNT):
-            col_vals = [self.grid[row][col] for row in range(GameConfig.TILE_COUNT)]
+            col_vals = [self.grid[row][col]
+                        for row in range(GameConfig.TILE_COUNT)]
             col_vals = [val for val in col_vals if val != 0]
 
             i = len(col_vals) - 1
             while i > 0:
                 if col_vals[i] == col_vals[i - 1]:
                     col_vals[i] *= 2
+                    self.score += col_vals[i]
                     col_vals.pop(i - 1)
                     col_vals.insert(0, 0)
                 i -= 1
@@ -139,9 +143,8 @@ class GameLogic:
 
         if new_grid == self.grid:
             return False
-        else:
-            self.grid = new_grid
-            return True
+        self.grid = new_grid
+        return True
 
     def game_over(self):
         # Game over logic
