@@ -7,17 +7,17 @@
 ## Suunnitellut toiminnallisuudet
 
 ### Perusversio
-- Pelilaudan luominen 4x4-ruudukkona
-- Numerolaattojen satunnainen generointi laudalle
-- Nuolinäppäinten toiminnallisuus laattojen liikuttamiseen
-- Laajan yhdistäminen samanarvoiset numerot
-- Pistelaskuri
-- Pelin häviämisen ja voittamisen tunnistaminen
-- Voittamisen jälkeen jatkamisen mahdollisuus
-- Häviämisen jälkeen uudelleen yrittämisen mahdollisuus
+- [x] Pelilaudan luominen 4x4-ruudukkona
+- [x] Numerolaattojen satunnainen generointi laudalle
+- [x] Nuolinäppäinten toiminnallisuus laattojen liikuttamiseen
+- [x] Laajan yhdistäminen samanarvoiset numerot
+- [x] Pistelaskuri
+- [ ] Pelin häviämisen ja voittamisen tunnistaminen
+- [ ] Voittamisen jälkeen jatkamisen mahdollisuus
+- [ ] Häviämisen jälkeen uudelleen yrittämisen mahdollisuus
 
 ### Jatkokehitysideat
-- Parhaan pistemäärän tallennus
-- Animaatiot laattojen liikkeelle ja yhdistämiselle
-- Värien muuttuminen laatan arvon kasvaessa
-- Undo-toiminto pisteiden hinnalla
+- [ ] Parhaan pistemäärän tallennus
+- [ ] Animaatiot laattojen liikkeelle ja yhdistämiselle
+- [x] Värien muuttuminen laatan arvon kasvaessa
+- [ ] Undo-toiminto pisteiden hinnalla
