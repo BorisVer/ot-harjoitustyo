@@ -5,3 +5,6 @@
 - Käyttäjä voi avata pelin
 - Pelin perus toiminnallisuus toimii
 - Testattu että kaikki merge mahdollisuudet toimivat pelissä
+
+## Viikko 4
+- Pelissä on pistelaskuri joka näkyy käyttäjälle
