@@ -7,6 +7,7 @@
 - [Vaatimusmäärittely](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 - [Tuntikirjanpito](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 - [Change Log](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
+- [Arkkitehtuurikuvaus](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
  
 ## Asennus
 1. Asenna riippuvuudet
