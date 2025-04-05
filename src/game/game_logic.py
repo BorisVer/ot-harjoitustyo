@@ -8,6 +8,7 @@ class GameLogic:
         self.grid = [[0]*4 for _ in range(GameConfig.TILE_COUNT)]
         self.score = 0
         self.tile_count = GameConfig.TILE_COUNT
+        self.game_over = False
 
         # Game starts with two random tiles
         self.spawn_tile()
@@ -28,15 +29,16 @@ class GameLogic:
                 self.grid[row][col] = 4
             else:
                 self.grid[row][col] = 2
-        else:
-            self.game_over()
+
 
     def move(self, input_key):
         method_name = "_move_" + input_key
         method = getattr(self, method_name)
         if method():
             self.spawn_tile()
-        print(self.score)
+        if self._is_game_over():
+            self.game_over = True
+
 
     def _move_left(self):
         new_grid = []
@@ -146,6 +148,19 @@ class GameLogic:
         self.grid = new_grid
         return True
 
-    def game_over(self):
-        # Game over logic
-        pass
+    # Check if game is over, conditions are no empty spots and no possible merges
+    def _is_game_over(self):
+        size = self.tile_count
+
+        for row in self.grid:
+            if 0 in row:
+                return False
+
+        for i in range(size):
+            for j in range(size):
+                if i + 1 < size and self.grid[i][j] == self.grid[i + 1][j]:
+                    return False
+                if j + 1 < size and self.grid[i][j] == self.grid[i][j + 1]:
+                    return False
+
+        return True

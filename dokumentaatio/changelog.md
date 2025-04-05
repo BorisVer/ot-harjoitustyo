@@ -8,4 +8,5 @@
 
 ## Viikko 4
 - Pelissä on pistelaskuri joka näkyy käyttäjälle
+- Peli tunnistaa jos peli on "hävitty" eli ei mahdollisia siirtoja
 - Testattu että pisteet muuttuvat oikein

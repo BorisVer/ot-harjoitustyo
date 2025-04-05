@@ -28,12 +28,18 @@ class BoardUI:
 
                 if value != 0:
                     text_surface = font.render(
-                        str(value), True, (0, 0, 0))  # Render text in black
+                        str(value), True, (0, 0, 0))
                     text_rect = text_surface.get_rect(
-                        center=rect.center)  # Center text in the tile
-                    self.screen.blit(text_surface, text_rect)  # Draw the text
+                        center=rect.center)
+                    self.screen.blit(text_surface, text_rect)
 
-        score_text = font.render("Score: " + str(self.board.score), True, (255, 255, 255))
+
+        if self.board.game_over:
+            score_text = font.render("Game Over, Score: " + str(self.board.score), True, (255,255,255))
+
+        else:
+            score_text = font.render("Score: " + str(self.board.score), True, (255, 255, 255))
+
         text_rect = score_text.get_rect()
         text_rect.midbottom = (self.screen.get_width() // 2, self.screen.get_height() - 40)
         self.screen.blit(score_text, text_rect)
