@@ -3,4 +3,5 @@ source = src
 omit =
     src/**/__init__.py,
     src/tests/**,
-    src/game_config.py
+    src/game_config.py,
+    src/__init__.py
