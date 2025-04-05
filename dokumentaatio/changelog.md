@@ -8,3 +8,4 @@
 
 ## Viikko 4
 - Pelissä on pistelaskuri joka näkyy käyttäjälle
+- Testattu että pisteet muuttuvat oikein
