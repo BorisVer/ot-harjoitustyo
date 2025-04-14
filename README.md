@@ -22,19 +22,26 @@
    poetry run invoke start
    ```
 
-### Ohjelman suoritukset
+## Ohjelman suoritukset
 
-Pelin voi käynnistää
+### Pelin voi käynnistää
    ```bash
    poetry run invoke start
    ```
 
-Testit voi suorittaa
+### Testit voi suorittaa
    ```bash
    poetry run invoke test
    ```
 
-Coverage raportin voi saada
+### Pylint testin voi suorittaa
+   ```bash
+   poetry run invoke lint
+   ```
+
+
+### Coverage raportin voi saada
    ```bash
    poetry run invoke coverage-report
    ```
+Raportti ilmestyy *htmlcov* hakemustoon
