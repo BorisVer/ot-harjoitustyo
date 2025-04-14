@@ -96,7 +96,7 @@ def lose_screen():
 
         if button(restart_button, "Restart", button_font, screen, mouse_pos, click,
             (119, 110, 101), (150, 140, 130), (255, 255, 255)):
-            return "restart"
+            main()
         if button(quit_button, "Quit", button_font, screen, mouse_pos, click,
             (119, 110, 101), (150, 140, 130), (255, 255, 255)):
             pygame.quit()
