@@ -1,10 +1,10 @@
 # pylint: disable=no-member
 # Pylint does not recognize pygame for some reason
+import sys
 import pygame
 from game.game_logic import GameLogic
 from ui.board_ui import BoardUI
 from game_config import GameConfig
-import sys
 
 def draw_text(text, font, color, surface, x, y):
     textobj = font.render(text, True, color)
@@ -46,11 +46,13 @@ def start_menu():
 
         draw_text("2048", title_font, (119,110,101), screen, config.WIDTH // 2, config.HEIGHT // 3)
 
-        if button(start_button, "Start Game", button_font, screen, mouse_pos, click, (119, 110, 101), (150, 140, 130), (255, 255, 255)):
+        if button(start_button, "Start Game", button_font, screen, mouse_pos, click,
+            (119, 110, 101), (150, 140, 130), (255, 255, 255)):
             main()
             return
 
-        if button(quit_button, "Quit", button_font, screen, mouse_pos, click, (119, 110, 101), (150, 140, 130), (255, 255, 255)):
+        if button(quit_button, "Quit", button_font, screen, mouse_pos, click,
+            (119, 110, 101), (150, 140, 130), (255, 255, 255)):
             pygame.quit()
             sys.exit()
 
@@ -89,11 +91,14 @@ def lose_screen():
 
         mouse_pos = pygame.mouse.get_pos()
 
-        draw_text("Game Over", lose_font, (255, 255, 255), screen, config.WIDTH // 2, config.HEIGHT // 3)
+        draw_text("Game Over", lose_font, (255, 255, 255), screen,
+            config.WIDTH // 2, config.HEIGHT // 3)
 
-        if button(restart_button, "Restart", button_font, screen, mouse_pos, click, (119, 110, 101), (150, 140, 130), (255, 255, 255)):
+        if button(restart_button, "Restart", button_font, screen, mouse_pos, click,
+            (119, 110, 101), (150, 140, 130), (255, 255, 255)):
             return "restart"
-        if button(quit_button, "Quit", button_font, screen, mouse_pos, click, (119, 110, 101), (150, 140, 130), (255, 255, 255)):
+        if button(quit_button, "Quit", button_font, screen, mouse_pos, click,
+            (119, 110, 101), (150, 140, 130), (255, 255, 255)):
             pygame.quit()
             sys.exit()
 
