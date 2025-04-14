@@ -14,7 +14,8 @@
 - [x] Pistelaskuri
 - [ ] Pelin häviämisen ja voittamisen tunnistaminen
 - [ ] Voittamisen jälkeen jatkamisen mahdollisuus
-- [ ] Häviämisen jälkeen uudelleen yrittämisen mahdollisuus
+- [x] Häviämisen jälkeen uudelleen yrittämisen mahdollisuus
+- [x] Alku ja lopetus näkymä
 
 ### Jatkokehitysideat
 - [ ] Parhaan pistemäärän tallennus

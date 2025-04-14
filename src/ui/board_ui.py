@@ -11,7 +11,7 @@ class BoardUI:
         self.spacing = config.SPACING
 
     def draw(self):
-        font = pygame.font.Font(None, 48)
+        font = pygame.font.SysFont("arial", 48)
 
         for i in range(GameConfig.TILE_COUNT):
             for j in range(GameConfig.TILE_COUNT):
@@ -33,12 +33,7 @@ class BoardUI:
                         center=rect.center)
                     self.screen.blit(text_surface, text_rect)
 
-
-        if self.board.game_over:
-            score_text = font.render("Game Over, Score: " + str(self.board.score), True, (255,255,255))
-
-        else:
-            score_text = font.render("Score: " + str(self.board.score), True, (255, 255, 255))
+        score_text = font.render("Score: " + str(self.board.score), True, (255, 255, 255))
 
         text_rect = score_text.get_rect()
         text_rect.midbottom = (self.screen.get_width() // 2, self.screen.get_height() - 40)
