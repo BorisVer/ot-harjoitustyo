@@ -5,6 +5,7 @@ import pygame
 from game.game_logic import GameLogic
 from ui.board_ui import BoardUI
 from game_config import GameConfig
+from game.top_score import TopScore
 
 def draw_text(text, font, color, surface, x, y):
     textobj = font.render(text, True, color)
@@ -18,6 +19,8 @@ def button(rect, text, font, screen, mouse_pos, click, base_color, hover_color, 
     return rect.collidepoint(mouse_pos) and click
 
 def start_menu():
+    # Check if the data for top score exits, if not make it
+    TopScore().file_exists()
     pygame.init()
     config = GameConfig()
     screen = pygame.display.set_mode((config.WIDTH, config.HEIGHT))
@@ -116,6 +119,7 @@ def main():
     running = True
     while running:
         if board.game_over:
+            ui.check_top_score()
             lose_screen()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
