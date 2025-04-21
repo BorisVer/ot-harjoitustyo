@@ -3,7 +3,25 @@ from game_config import GameConfig
 from game.top_score import TopScore
 
 class BoardUI:
+    """
+    Shows the visual representation of the game loop
+
+    Draws the game board, tiles, animations, current score and top score
+    """
     def __init__(self, board, screen, config):
+        """
+        Initializes the BoardUI class
+
+        Args:
+            board: The game board object
+            screen: The game screen object
+            config: The game configuration object
+            tile_size: The dimentions for the tiles
+            spacing: The amount of space between tiles
+            top_score = The top score class
+            current_top_score: Gets the current top score from the top_score
+            animation_time: The duration of the animation
+        """
         self.board = board
         self.screen = screen
         self.config = config
@@ -16,7 +34,17 @@ class BoardUI:
         self.animation_time = config.ANIMATION_DURATION
 
     def draw(self):
+        """
+        Function responsible for drawing everyting
 
+        Actions:
+            Drawing the background
+            Drawing the tiles
+            Drawing the animations for tiles
+            Drawing the score
+            Drawing the top score
+            Drawing the game over message when needed
+        """
         self.screen.fill(self.config.BG_COLOR)
         font = pygame.font.SysFont("arial", 32)
         now = pygame.time.get_ticks()
@@ -84,6 +112,10 @@ class BoardUI:
 
 
     def check_top_score(self):
+        """
+        Checks if the currently gotten score at the end of the game
+        is larger than the top score, and updates the top score if necessary
+        """
         if self.board.score > self.current_top_score:
             self.current_top_score = self.board.score
             self.top_score.save_top_score(self.current_top_score)

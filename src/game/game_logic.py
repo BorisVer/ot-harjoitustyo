@@ -3,6 +3,18 @@ import pygame
 from game_config import GameConfig
 
 class Tile:
+    """
+    Represents a tile in the game grid.
+
+    Attributes:
+        value: The value of the tile (2,4,8,...)
+        row: The row index of the tile
+        col: The column index of the tile
+        previous_row: The previous row index of the tile (needed purely for animation)
+        previous_col: The previous column index of the tile (needed purely for animation)
+        spawn_time: The time when the tile was spawned (needed purely for animation)
+        move_start: The time when the tile started moving (needed purely for animation)
+    """
     def __init__(self, value, row, col):
         self.value = value
         self.row = row
@@ -15,7 +27,27 @@ class Tile:
 
 # --------------------------------------
 class GameLogic:
+    """
+    Manages game rules and states:
+        Tile spawning
+        Tile sliding
+        Tile merging
+        Score calculation
+        Game over detection
+    """
+
     def __init__(self):
+        """
+        Initializes the game state
+
+        Attributes:
+            tile_count: The number of tiles in the grid (from GameConfig file, standard 4)
+            score: The current score of the game
+            game_over: Indicates if the game is over
+            grid: The 2D grid representing the game board
+            last_spawned_tile: The position of the last spawned tile
+            spawn_time: The time when the last tile was spawned
+        """
         self.tile_count = GameConfig.TILE_COUNT
         self.score = 0
         self.game_over = False
@@ -29,6 +61,14 @@ class GameLogic:
         self.spawn_tile()
 
     def spawn_tile(self):
+        """
+        Spawns a new tile at a random empty position
+
+        Tile has a 90% probablity of being 2, 10% of being 4
+
+        Returns:
+            Tile: The newly spawned tile, or None if no empty positions are available
+        """
         empty = [
             (r, c)
             for r in range(self.tile_count)
@@ -48,6 +88,15 @@ class GameLogic:
         return tile
 
     def move(self, input_key):
+        """
+        Executes a move based on the input given
+
+        Records tile movement history, calles the appropriate move and spawns a new tile
+        Calls the is_game_over to check if game is over after each move, ends game if True
+
+        Args:
+            input_key: A string representing the direction of the move ('up', 'down', 'left', 'right')
+        """
         now = pygame.time.get_ticks()
         for r in range(self.tile_count):
             for tile in self.grid[r]:
@@ -65,6 +114,12 @@ class GameLogic:
             self.game_over = True
 
     def _move_left(self):
+        """
+        Slides all tiles to the left. Merges equal tiles
+
+        Returns:
+            bool: True if any tile moved, False otherwise
+        """
         moved = False
         for r in range(self.tile_count):
             tiles = [t for t in self.grid[r] if t]
@@ -84,6 +139,12 @@ class GameLogic:
         return moved
 
     def _move_right(self):
+        """
+        Slides all tiles to the right. Merges equal tiles
+
+        Returns:
+            bool: True if any tile moved, False otherwise
+        """
         moved = False
         for r in range(self.tile_count):
             tiles = [t for t in self.grid[r] if t]
@@ -104,6 +165,12 @@ class GameLogic:
         return moved
 
     def _move_up(self):
+        """
+        Slides all tiles up. Merges equal tiles
+
+        Returns:
+            bool: True if any tile moved, False otherwise
+        """
         moved = False
         for c in range(self.tile_count):
             col_tiles = [self.grid[r][c] for r in range(self.tile_count) if self.grid[r][c]]
@@ -124,6 +191,12 @@ class GameLogic:
         return moved
 
     def _move_down(self):
+        """
+        Slides all tiles down. Merges equal tiles
+
+        Returns:
+            bool: True if any tile moved, False otherwise
+        """
         moved = False
         for c in range(self.tile_count):
             col_tiles = [self.grid[r][c] for r in range(self.tile_count) if self.grid[r][c]]
@@ -145,7 +218,13 @@ class GameLogic:
         return moved
 
     def _is_game_over(self):
-        # Generated with help from AI
+        """
+        Checks if there is any valid moves or empty tiles
+
+        Returns:
+            bool: True if game is over, False otherwise
+        """
+        # Generated with help of AI
         for r in range(self.tile_count):
             for c in range(self.tile_count):
                 if self.grid[r][c] is None:

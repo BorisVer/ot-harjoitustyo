@@ -1,4 +1,19 @@
 class GameConfig:
+    """
+    All data that can be modified as needed to change the game
+
+    Args:
+        TILE_COUNT: How many tiles in each row and how many columns
+        WIDTH: Width of the screen
+        HEIGHT: Height of the screen
+        TILE_SIZE: The size of the tiles
+        SPACING: The space between tiles
+        BG_COLOR: The background color for the game
+        EMPTY_TILE_COLOR: Color for spaces that are not occupied by tiles
+        TEXT_COLOR: Standard color for text in the game
+        TILE_COLORS: All colors for tiles at each value
+        ANIMATION_DURATION: Duration of animations in milliseconds
+    """
     TILE_COUNT = 4
     WIDTH = 400
     HEIGHT = 500

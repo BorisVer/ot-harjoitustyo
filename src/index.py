@@ -11,11 +11,38 @@ from game_config import GameConfig
 from ui.board_ui import BoardUI
 
 def draw_text(text, font, color, surface, pos):
+    """
+    Render given text at the given position
+
+    Args:
+        text: The string to render
+        font: What font the text will be rendered in
+        color: What color the text will be (RGB)
+        surface: Target surface to draw the text on
+        pos: The x and y cordinates of the text
+    """
     textobj = font.render(text, True, color)
     textrect = textobj.get_rect(center=(pos[0],pos[1]))
     surface.blit(textobj, textrect)
 
 def button(data):
+    """
+    Draw a button with given data, detect hover and click
+
+    Args:
+        data(dict): Dictionary with all data for the button:
+            rect: Button dimentions and position
+            font: What font the text will be rendered in
+            screen: The surface to draw on
+            mouse: Current mouse coordinates (x, y)
+            click: Weather the mouse has been clicked (bool)
+            base_color: Default color of the button
+            hover_color: Color for the button when hovered over
+            text:color: Color for the text
+
+    Return:
+        bool: True if button is clicked, else False
+            """
     color = data["hover_color"] if data["rect"].collidepoint(data["mouse"]) else data["base_color"]
     pygame.draw.rect(data["screen"], color, data["rect"], border_radius=10)
     pos = (data["rect"].centerx, data["rect"].centery)
@@ -24,7 +51,13 @@ def button(data):
     return data["rect"].collidepoint(data["mouse"]) and data["click"]
 
 def start_menu():
-    # Check if the data for top score exits, if not make it
+    """
+    Display start menu, handels users input for starting game or quitting
+
+    Checks if the top score folder and file exists, creates if needed.
+    Initializes the Pygame.
+    Creates "Start Game" and "Quit" buttons and causes their actions upon being pressed
+    """
     TopScore().file_exists()
     pygame.init()
     config = GameConfig()
@@ -88,6 +121,12 @@ def start_menu():
         clock.tick(60)
 
 def lose_screen():
+    """
+    Dispalys the "Game Over" screen with the current game in the background faded out
+
+    Shows "Game Over" text and buttons with "Restart" and "Quit". Handels the actions
+    for these buttons
+    """
     config = GameConfig
     screen = pygame.display.get_surface()
 
@@ -154,6 +193,13 @@ def lose_screen():
         clock.tick(60)
 
 def main():
+    """
+    Initializes and runs the loop of the game
+
+    Setups the basics for the game
+    Processes input events to move tiles or quit the game
+    Triggers lose screen and runs until either lose screen or user quitting
+    """
     pygame.font.init()
     config = GameConfig()
     screen = pygame.display.set_mode((config.WIDTH, config.HEIGHT))

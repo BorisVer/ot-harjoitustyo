@@ -16,3 +16,7 @@
 - Alkunäkymä missä Start ja Quit napit
 - Lopetusnäkymä kun peli loppuu jossa Restart ja Quit napit
 - Paranneltu koodia ja sen luokkia
+
+## Viikko 6
+- Lisätty uuden laatan gereoinille animaatio sekä animaatio siirtymiselle
+- Lisätty testejä jotka testaavat nappeja

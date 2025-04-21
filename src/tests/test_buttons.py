@@ -31,3 +31,17 @@ class TestButtons(unittest.TestCase):
         data["click"] = True
         result = index.button(data)
         self.assertTrue(result)
+
+    def test_clicking_outside_button_does_not_activate(self):
+        data = self.button_data.copy()
+        data["mouse"] = (0, 0)
+        data["click"] = True
+        result = index.button(data)
+        self.assertFalse(result)
+
+    def test_hovering_does_not_activate(self):
+        data = self.button_data.copy()
+        data["mouse"] = (75, 75)
+        data["click"] = False
+        result = index.button(data)
+        self.assertFalse(result)
