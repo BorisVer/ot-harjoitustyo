@@ -9,41 +9,79 @@ class BoardUI:
         self.config = config
         self.tile_size = config.TILE_SIZE
         self.spacing = config.SPACING
+
         self.top_score = TopScore()
         self.current_top_score = self.top_score.load_top_score()
 
+        self.animation_time = config.ANIMATION_DURATION
+
     def draw(self):
+
+        self.screen.fill(self.config.BG_COLOR)
         font = pygame.font.SysFont("arial", 32)
+        now = pygame.time.get_ticks()
 
-        for i in range(GameConfig.TILE_COUNT):
-            for j in range(GameConfig.TILE_COUNT):
-                value = self.board.grid[i][j]
-                color = self.config.TILE_COLORS.get(value)
+        for r in range(GameConfig.TILE_COUNT):
+            for c in range(GameConfig.TILE_COUNT):
 
-                rect = pygame.Rect(
-                    j*(self.tile_size + self.spacing) + self.spacing,
-                    i*(self.tile_size + self.spacing) + self.spacing,
-                    self.tile_size,
-                    self.tile_size
+                x = c * (self.tile_size + self.spacing) + self.spacing
+                y = r * (self.tile_size + self.spacing) + self.spacing
+                base_rect = pygame.Rect(x, y, self.tile_size, self.tile_size)
+
+                pygame.draw.rect(
+                    self.screen,
+                    self.config.EMPTY_TILE_COLOR,
+                    base_rect,
+                    border_radius=4
                 )
-                pygame.draw.rect(self.screen, color, rect)
 
-                if value != 0:
-                    text_surface = font.render(
-                        str(value), True, (0, 0, 0))
-                    text_rect = text_surface.get_rect(
-                        center=rect.center)
-                    self.screen.blit(text_surface, text_rect)
+                tile = self.board.grid[r][c]
+                if tile is None:
+                    continue
 
-        score_text = font.render("Score: " + str(self.board.score), True, (255, 255, 255))
-        score_rect = score_text.get_rect()
-        score_rect.midbottom = (self.screen.get_width() // 2, self.screen.get_height() - 60)
-        self.screen.blit(score_text, score_rect)
+                # Code for animation, written with help of AI
+                dt_move = now - tile.move_start
+                t_move = min(1, dt_move / self.animation_time)
+                row_pos = tile.previous_row + (tile.row - tile.previous_row) * t_move
+                col_pos = tile.previous_col + (tile.col - tile.previous_col) * t_move
 
-        top_score_text = font.render("Top Score: " + str(self.current_top_score), True, (255, 255, 255))
-        top_score_rect = top_score_text.get_rect()
-        top_score_rect.midbottom = (self.screen.get_width() // 2, self.screen.get_height() - 10)
-        self.screen.blit(top_score_text, top_score_rect)
+                px = col_pos * (self.tile_size + self.spacing) + self.spacing
+                py = row_pos * (self.tile_size + self.spacing) + self.spacing
+                rect = pygame.Rect(px, py, self.tile_size, self.tile_size)
+
+                dt_spawn = now - tile.spawn_time
+                if dt_spawn < self.animation_time:
+                    t_spawn = dt_spawn / self.animation_time
+                    shrink = int(self.tile_size * (1 - t_spawn) / 2)
+                    rect.inflate_ip(-shrink*2, -shrink*2)
+                # End of code part for animation
+
+                color = self.config.TILE_COLORS[tile.value]
+                pygame.draw.rect(
+                    self.screen,
+                    color,
+                    rect,
+                    border_radius=4
+                )
+
+                text_surf = font.render(str(tile.value), True, self.config.TEXT_COLOR)
+                text_rect = text_surf.get_rect(center=rect.center)
+                self.screen.blit(text_surf, text_rect)
+
+        score_txt = font.render(f"Score: {self.board.score}", True, (255, 255, 255))
+        score_rect = score_txt.get_rect(midbottom=(
+            self.screen.get_width() // 2,
+            self.screen.get_height() - 60
+        ))
+        self.screen.blit(score_txt, score_rect)
+
+        top_txt = font.render(f"Top Score: {self.current_top_score}", True, (255, 255, 255))
+        top_rect = top_txt.get_rect(midbottom=(
+            self.screen.get_width() // 2,
+            self.screen.get_height() - 10
+        ))
+        self.screen.blit(top_txt, top_rect)
+
 
     def check_top_score(self):
         if self.board.score > self.current_top_score:

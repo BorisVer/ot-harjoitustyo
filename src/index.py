@@ -1,22 +1,27 @@
 # pylint: disable=no-member
 # Pylint does not recognize pygame for some reason
-import sys
-import pygame
-from game.game_logic import GameLogic
-from ui.board_ui import BoardUI
-from game_config import GameConfig
-from game.top_score import TopScore
 
-def draw_text(text, font, color, surface, x, y):
+import sys
+
+import pygame
+
+from game.game_logic import GameLogic
+from game.top_score import TopScore
+from game_config import GameConfig
+from ui.board_ui import BoardUI
+
+def draw_text(text, font, color, surface, pos):
     textobj = font.render(text, True, color)
-    textrect = textobj.get_rect(center=(x,y))
+    textrect = textobj.get_rect(center=(pos[0],pos[1]))
     surface.blit(textobj, textrect)
 
-def button(rect, text, font, screen, mouse_pos, click, base_color, hover_color, text_color):
-    color = hover_color if rect.collidepoint(mouse_pos) else base_color
-    pygame.draw.rect(screen, color, rect, border_radius=10)
-    draw_text(text, font, text_color, screen, rect.centerx, rect.centery)
-    return rect.collidepoint(mouse_pos) and click
+def button(data):
+    color = data["hover_color"] if data["rect"].collidepoint(data["mouse"]) else data["base_color"]
+    pygame.draw.rect(data["screen"], color, data["rect"], border_radius=10)
+    pos = (data["rect"].centerx, data["rect"].centery)
+    draw_text(data["text"], data["font"], data["text_color"],
+       data["screen"], pos)
+    return data["rect"].collidepoint(data["mouse"]) and data["click"]
 
 def start_menu():
     # Check if the data for top score exits, if not make it
@@ -40,22 +45,42 @@ def start_menu():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    click = True
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                click = True
 
         mouse_pos = pygame.mouse.get_pos()
         screen.fill(config.BG_COLOR)
 
-        draw_text("2048", title_font, (119,110,101), screen, config.WIDTH // 2, config.HEIGHT // 3)
+        pos = (config.WIDTH // 2, config.HEIGHT // 3)
+        draw_text("2048", title_font, (119,110,101), screen, pos)
 
-        if button(start_button, "Start Game", button_font, screen, mouse_pos, click,
-            (119, 110, 101), (150, 140, 130), (255, 255, 255)):
+        start_button_data = {"rect": start_button,
+            "text": "Start Game",
+            "font": button_font,
+            "screen": screen,
+            "mouse": mouse_pos,
+            "click": click,
+            "base_color": (119, 110, 101),
+            "hover_color": (150, 140, 130),
+            "text_color": (255, 255, 255)
+        }
+
+        quit_button_data = {"rect": quit_button,
+            "text": "Quit",
+            "font": button_font,
+            "screen": screen,
+            "mouse": mouse_pos,
+            "click": click,
+            "base_color": (119, 110, 101),
+            "hover_color": (150, 140, 130),
+            "text_color": (255, 255, 255)
+        }
+
+        if button(start_button_data):
             main()
             return
 
-        if button(quit_button, "Quit", button_font, screen, mouse_pos, click,
-            (119, 110, 101), (150, 140, 130), (255, 255, 255)):
+        if button(quit_button_data):
             pygame.quit()
             sys.exit()
 
@@ -94,14 +119,34 @@ def lose_screen():
 
         mouse_pos = pygame.mouse.get_pos()
 
-        draw_text("Game Over", lose_font, (255, 255, 255), screen,
-            config.WIDTH // 2, config.HEIGHT // 3)
+        pos = (config.WIDTH // 2, config.HEIGHT // 3)
+        draw_text("Game Over", lose_font, (255, 255, 255), screen, pos)
 
-        if button(restart_button, "Restart", button_font, screen, mouse_pos, click,
-            (119, 110, 101), (150, 140, 130), (255, 255, 255)):
+        restart_button_data = {"rect": restart_button,
+            "text": "Restart",
+            "font": button_font,
+            "screen": screen,
+            "mouse": mouse_pos,
+            "click": click,
+            "base_color": (119, 110, 101),
+            "hover_color": (150, 140, 130),
+            "text_color": (255, 255, 255)
+        }
+
+        quit_button_data = {"rect": quit_button,
+            "text": "Quit",
+            "font": button_font,
+            "screen": screen,
+            "mouse": mouse_pos,
+            "click": click,
+            "base_color": (119, 110, 101),
+            "hover_color": (150, 140, 130),
+            "text_color": (255, 255, 255)
+        }
+
+        if button(restart_button_data):
             main()
-        if button(quit_button, "Quit", button_font, screen, mouse_pos, click,
-            (119, 110, 101), (150, 140, 130), (255, 255, 255)):
+        if button(quit_button_data):
             pygame.quit()
             sys.exit()
 
