@@ -15,3 +15,4 @@
 ## Viikko 5
 - Alkunäkymä missä Start ja Quit napit
 - Lopetusnäkymä kun peli loppuu jossa Restart ja Quit napit
+- Paranneltu koodia ja sen luokkia
