@@ -1,6 +1,6 @@
- # 2048
+ # 2048 Peli
 
-2048 Peli
+Pelin idea on saman arvoisten laattojen yhdistäminen suurempi arvoisiin laattoihin. Yhdistäminen tapahtuu siirroilla (vasemmalle, oikeall, ylös, alas) ja lopullisena tavoitteena on saavuttaa 2048 arvoinen ruutu. 
 
 ## Dokumentaatio
 
