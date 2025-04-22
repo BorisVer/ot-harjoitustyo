@@ -20,3 +20,4 @@
 ## Viikko 6
 - Lisätty uuden laatan gereoinille animaatio sekä animaatio siirtymiselle
 - Lisätty testejä jotka testaavat nappeja
+- Lisätty docstring kaikkiin luokkiin ja funktioihin lukuunottamatta testejä

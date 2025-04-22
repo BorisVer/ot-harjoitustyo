@@ -12,13 +12,15 @@
 - [x] Nuolinäppäinten toiminnallisuus laattojen liikuttamiseen
 - [x] Laajan yhdistäminen samanarvoiset numerot
 - [x] Pistelaskuri
-- [ ] Pelin häviämisen ja voittamisen tunnistaminen
-- [ ] Voittamisen jälkeen jatkamisen mahdollisuus
+- [x] Pelin häviämisen tunnistaminen
+- [x] Voittamisen jälkeen jatkamisen mahdollisuus
 - [x] Häviämisen jälkeen uudelleen yrittämisen mahdollisuus
 - [x] Alku ja lopetus näkymä
 
 ### Jatkokehitysideat
-- [ ] Parhaan pistemäärän tallennus
-- [ ] Animaatiot laattojen liikkeelle ja yhdistämiselle
+- [x] Parhaan pistemäärän tallennus
+- [x] Animaatiot laattojen liikkeelle
+- [ ] Animaatiot laattojen yhdistämiselle
+- [x] Animaatiot laattojen muodostamiselle
 - [x] Värien muuttuminen laatan arvon kasvaessa
 - [ ] Undo-toiminto pisteiden hinnalla

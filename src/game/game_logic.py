@@ -95,7 +95,8 @@ class GameLogic:
         Calls the is_game_over to check if game is over after each move, ends game if True
 
         Args:
-            input_key: A string representing the direction of the move ('up', 'down', 'left', 'right')
+            input_key: A string representing the direction
+            of the move ('up', 'down', 'left', 'right')
         """
         now = pygame.time.get_ticks()
         for r in range(self.tile_count):

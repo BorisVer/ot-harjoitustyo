@@ -8,9 +8,9 @@
 | 5.4   |  4   | Lisää testejä ja arkkitehtuurikuvaus, pelin loppumis ehto	|
 | 14.4  |  6   | Alku ja loppu näkymät, arkkitehtuuria	|
 | 15.4  |  2   | Pieniä korjauksia koodiin ja dokumentaatioon	|
-|       |      |	|
+| 20.4  |  4   | Animaatiot laattojen liikkeille ja muodostamiselle	|
 |       |      | 	|
 |       |      | 	|
 |       |      | 	|
 |       |      | 	|
-| yht   |  20   | 	|
+| yht   |  24   | 	|
