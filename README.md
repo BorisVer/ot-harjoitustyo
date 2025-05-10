@@ -8,7 +8,7 @@ Pelin idea on saman arvoisten laattojen yhdistäminen suurempi arvoisiin laattoi
 - [Tuntikirjanpito](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 - [Change Log](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 - [Arkkitehtuurikuvaus](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
-- [Relese](https://github.com/BorisVer/ot-harjoitustyo/releases/tag/viikko5)
+- [Relese](https://github.com/BorisVer/ot-harjoitustyo/releases/tag/viikko6)
 - [Käyttöohje](https://github.com/BorisVer/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
  
 ## Asennus
