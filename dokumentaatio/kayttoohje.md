@@ -12,5 +12,5 @@ poetry run invoke start
 ```
 
 ## Pelin pelaaminen
-Peli avautuu alkunäyttöön, josta "Start Game" nappia painamalla peli käynnistyy. Pelin tavoite on yhdistää saman arvoisia laattoja saamaan arvokkaampia laattoja. Peli loppuu kun ei ole mahdollisia siirtoja enään jolloin siityy loppunäyttöön. Loppunäytöstä voi aloittaa uudelleen tai sulkea pelin. 
+Peli avautuu alkunäyttöön, josta "Start Game" nappia painamalla peli käynnistyy. Peliä pelataan nuolinäppäimmillä. Nuolinäppäintä painaessa kaikki pelikentän laatat liukuvat kyseiseen suuntaan kunnes osuvat reunaan tai toiseen laattaa. Jos kaksi saman arvoista laattaa yhdistyy niistä syntyy yksi tuplasti arvokkaampi laatta. Tästä saa laattojen summan verran lisää pisteitä. Pelin tavoite on saada mahdollisimman paljon pisteitä. Peli loppuu kun koko ruutu on tukossa eikä ole yhtäkään mahdollista siirtoa enään. 
 
