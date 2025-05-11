@@ -5,34 +5,31 @@
 ```mermaid
 classDiagram
 
-    class Laatta {
-        -arvo: int 2^x
-    }
+    GameService --> Board
+    Board "1" --> "*" Tile
+    GameService --> ScoreService
+    ScoreService ..> DatabaseService
+    UserInterface ..> GameService
+    UserInterface ..> ScoreService
 
-    class Pelilauta {
-        -4x4 ruudukko
-        -pisteitä: int
+    class GameService {
+        -board
+        -score service
     }
-
-    class Siirto {
-        - Vasemmalle
-        - Oikealle
-        - Ylös
-        - Alas
+    class Board {
+        -cells
     }
-
-    Pelilauta --> AlustaPeli
-    Pisteitä"Pisteita: 0" -- AlustaPeli
-    AlustaPeli -- UusiLaatta
-    UusiLaatta "2" -- Laatta
-    UusiLaatta "90%" -- Laatta2
-    UusiLaatta "10%" -- Laatta4
-    Pelilauta -- Siirto
-    Siirto "2 samaa" --> Yhdistys
-    Laatta -- Siirto
-    Yhdistys "Laattojen summa" -- Pistelaskuri
-    Pistelaskuri -- Pisteitä
-    Siirto --> UusiLaatta
+    class Tile {
+        -value
+    }
+    class ScoreService {
+        -current score
+        -best score
+    }
+    class DatabaseService {
+        -db File
+    }
+    class UserInterface
 
 ```
 
@@ -41,12 +38,13 @@ classDiagram
 
 
 ```mermaid
-graph TD
-    ui --> services
-    services --> enteties
-    services --> repositories 
+graph LR
+    UI["ui"] --> Services["services"]
+    Services --> Model["model"]
+    Services --> Entities["entities"]
+
 ```
-Pakkaus *ui* käytää *services* pakkauksessa olevaa pelilogiikkaa. *services* käyttää *entities* pakkausta sillä siellä ovat *Board* ja *Tile*. *services* myös käyttää *repositories* sisältämää pysyvää muistia tallentamaan pelajaan parasta tulosta.
+*ui* paketti sisältää kaiken graaffisen käyttöliittymän koodin. Se luo pelinäkymän, valikot ja graaffiset muutokset. Käyttöliittymä on rakennettu Pygame-kirjastolla. *services* paketti vastaa pelin sovelluslogiikasta. Se hoitaa esimerkiksi laattojen liikuttamisen, yhdistysäännöt ja pisteiden laskennan. *model* paketti säilyttää pelin tilan. Se sisältää esimerkiksi *Board* ja *Tile* luokat jotka tallentavat pelilaudan ja ruutujen arvoja. *entities* paketti huolehtii data pysyväistallennuksesta. Se hoitaa yhteydet ja tallennukset parhaan pistemäärän tiedostoon.
 
 
 ## Käyttöliittymä
